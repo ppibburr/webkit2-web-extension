@@ -2,8 +2,9 @@ $: << File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
 require 'webkit2-gtk'
 require 'webkit2-web-extension/version'
+require 'json'
 
-module Webkit2WebExtension
+module WebKit2WebExtension
   # Call immediately!
   def self.config o={}
     default = {

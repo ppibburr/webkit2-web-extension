@@ -34,7 +34,8 @@ begin
         @ppid = obj['ppid']      if obj
         @data = obj['data']      if obj
          
-
+        puts "Extension initialization data => #{obj}" 
+         
         if prog and File.exist?(prog)
         elsif File.exist?(prog=File.join(ENV['HOME'], '.webkit2-web-extension', 'extensions', prog, "extension.rb"))
         end
@@ -92,6 +93,7 @@ begin
       end
       
       def run
+        p({:load => program})
         load program if program      
       end
       
