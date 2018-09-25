@@ -14,6 +14,4 @@ w.signal_connect "delete-event" do
   Gtk.main_quit
 end
 
-wv.load_html "<html><body>check your console</body></html>", ""
-
 Gtk.main

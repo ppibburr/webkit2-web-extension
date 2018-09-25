@@ -93,8 +93,8 @@ begin
       end
       
       def run
-        p({:load => program})
-        load program if program      
+        p({:load => program}) if program
+        load program          if program      
       end
       
       def self.default

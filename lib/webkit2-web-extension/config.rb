@@ -22,4 +22,24 @@ module WebKit2WebExtension
       ctx.web_extensions_initialization_user_data = GLib::Variant.new({ppid: Process.pid, extension: opts[:extension], data: opts[:data]}.to_json)
     end
   end
+  
+  def self.init_webview(wv)
+    wv.run_javascript('true;') do |wv,r|
+      wv.run_javascript_finish r
+    end  
+    
+    wv
+  end
+end
+
+WebKit2Gtk::WebView
+class WebKit2Gtk::WebView
+  class << self
+    alias :_web_view_new :new
+  end
+  
+  def self.new *o
+    wv = _web_view_new *o
+    WebKit2WebExtension.init_webview(wv)
+  end
 end
