@@ -25,10 +25,10 @@ begin
     end
       
     class Extension
-      attr_reader :sw, :ppid, :program, :data
+      attr_reader :sw, :ppid, :program, :data, :initialization_data
 
       def initialize
-        obj   = JSON.parse(ARGV.shift) unless ARGV.empty?
+        @initialization_data = obj = JSON.parse(ARGV.shift) unless ARGV.empty?
         
         prog  = obj['extension'] if obj
         @ppid = obj['ppid']      if obj

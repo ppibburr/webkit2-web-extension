@@ -20,4 +20,4 @@ ext.message do |pg, msg|
   p(message: {page: pg, text: msg.text})
 end
 
-p :here
+p initialization_data: ext.initialization_data
