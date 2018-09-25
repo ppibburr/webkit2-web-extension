@@ -13,7 +13,7 @@ module WebKit2WebExtension
       data:            {}
     }
     
-    opts = default.merge(o)
+    p opts = default.merge(o)
 
     ctx = WebKit2Gtk::WebContext.default()
     ctx.set_web_extensions_directory(opts[:extensions_path]);
