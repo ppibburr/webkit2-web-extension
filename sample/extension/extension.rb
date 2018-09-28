@@ -1,3 +1,10 @@
+ipc = WebKit2WebExtension.ipc_client do |c|
+  c.message do |m|
+    puts cli_rcv_msg: JSON.parse(m)
+    c.puts '{"go": "away"}'
+  end
+end
+
 ext = WebKit2WebExtension.default
 
 # called when a page main frame is cleared the +first time+
@@ -17,7 +24,8 @@ end
 
 # Called on console.log
 ext.message do |pg, msg|
-  p(message: {page: pg, text: msg.text})
+  ipc.puts({console_message: {page: pg.id, text: msg.text}}.to_json)
 end
 
 p initialization_data: ext.initialization_data
+

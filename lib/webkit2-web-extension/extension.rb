@@ -1,6 +1,8 @@
 require "gobject-introspection"
 require 'json'
 
+require 'webkit2-web-extension/ipc'
+
 module WebKit2WebExtension
   class << self
     # @!visibility private
@@ -29,14 +31,15 @@ module WebKit2WebExtension
   #
   # Provides mechanisms to access {WebKit2WebExtension::Page}'s 
   class Extension
-    attr_reader :sw, :ppid, :program, :data, :initialization_data
+    attr_reader :sw, :ppid, :program, :data, :initialization_data, :ipc_socket_path
 
     def initialize
       @initialization_data = obj = JSON.parse(ARGV.shift) unless ARGV.empty?
       
-      prog  = obj['extension'] if obj
-      @ppid = obj['ppid']      if obj
-      @data = obj['data']      if obj
+      prog             = obj['extension']       if obj
+      @ppid            = obj['ppid']            if obj
+      @data            = obj['data']            if obj
+      @ipc_socket_path = obj['ipc_socket_path'] if obj
        
       puts "Extension initialization data => #{obj}" 
        
