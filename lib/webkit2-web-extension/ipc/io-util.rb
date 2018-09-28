@@ -25,3 +25,7 @@ module WebKit2WebExtension
     end
   end
 end
+
+trap "SIGINT" do
+  exit 130
+end

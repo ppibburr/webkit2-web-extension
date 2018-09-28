@@ -17,8 +17,8 @@ WebKit2WebExtension.config extension: File.expand_path(File.join(File.dirname(__
                            
 w = Gtk::Window.new
 w.add wv = WebKit2Gtk::WebView.new()
-wv.run_javascript('console.log("Hello!");</script>') do |r|
-  wv.run_javascript_finish(wv, r)
+wv.run_javascript('console.log("Hello!");') do |wv,r|
+  wv.run_javascript_finish(r)
 end
 w.resize 680,400
 
