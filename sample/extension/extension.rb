@@ -3,6 +3,8 @@ ipc = WebKit2WebExtension.ipc_client do |c|
     puts cli_rcv_msg: JSON.parse(m)
     c.puts '{"go": "away"}'
   end
+  
+  c.puts '{"action": "show"}'
 end
 
 ext = WebKit2WebExtension.default
